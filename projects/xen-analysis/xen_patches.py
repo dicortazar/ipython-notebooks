@@ -385,7 +385,9 @@ class DatabaseError(Exception):
 class PatchesParser(object):
 
     THREAD_REGEX = '^\[PATCH.*].+$'
-    PATCH_REGEX = '^.*\[PATCH\s*(?:\s+for[\-\s]\d+\.\d+)?\s*(?:[vV](?P<version>\d+))?\s*(?:(?P<num>\d+)/(?P<total>\d+))?\]\s*(?P<subject>.+)$'
+    #PATCH_REGEX = '^.*\[PATCH\s*(?:\s+for[\-\s]\d+\.\d+)?\s*(?:[vV](?P<version>\d+))?\s*(?:(?P<num>\d+)/(?P<total>\d+))?\]\s*(?P<subject>.+)$'
+    TYPE = '(OSSTEST|MINI-OS|raisin|iommu)*'
+    PATCH_REGEX = '^.*\[\s*'+TYPE+'\s*PATCH\s*'+TYPE+'\s*(?:\s+for[\-\s]\d+\.\d+)?\s*(?:[vV](?P<version>\d+))?\s*(?:(?P<num>\d+)/(?P<total>\d+))?\]\s*(?P<subject>.+)$'
     FLAGS_REGEX = {
                    'Acked-by' : '^Acked-by:(?P<value>.+)$',
                    'Cc' : '^Cc:(?P<value>.+)',
@@ -605,6 +607,13 @@ def to_key(s):
     key = key.replace('"', "'")
     key = key[:-1] if key.endswith('.') else key
     key = key[key.rfind(': ') + 2:]
+    key = key.replace('/', "")
+    key = key.replace(" ", "")
+    key = key.replace('\n', "")
+    key = key.replace('.', "")
+    key = key.replace("_", "")
+    key = key.lstrip()
+    key = key.rstrip()
     return key
 
 def parse_args():
