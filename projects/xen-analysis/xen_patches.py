@@ -130,6 +130,7 @@ def retrieve_patch_threads(conn, from_date, to_date):
         else:
             m = messages[msg_id]
 
+        m.msg_id = raw_msg["msg_id"]
         m.subject = clean_subject(raw_msg['subject'])
         m.body = raw_msg['body']
         m.date = raw_msg['date']
@@ -209,6 +210,7 @@ class PatchSeries(Base):
     __table_args__ = ({'mysql_charset': 'utf8'})
 
     id = Column(Integer, primary_key=True)
+    message_id = Column(String(256))
     subject = Column(String(256))
     versions = relationship('PatchSeriesVersion',
                             cascade="save-update, merge, delete")
@@ -239,6 +241,7 @@ class Patch(Base):
     __table_args__ = ({'mysql_charset': 'utf8'})
 
     id = Column(Integer, primary_key=True)
+    message_id = Column(String(256))
     subject = Column(String(256))
     body = Column(Text)
     series = Column(Integer)
@@ -266,6 +269,7 @@ class Comment(Base):
     __table_args__ = ({'mysql_charset': 'utf8'})
 
     id = Column(Integer, primary_key=True)
+    message_id = Column(String(256))
     subject = Column(String(256))
     body = Column(Text)
     date = Column(DateTime)
@@ -466,7 +470,10 @@ class PatchesParser(object):
 
             # Not found, so create a new one
             if ps is None:
-                ps = PatchSeries(subject=parts['subject'])
+                # root message_id
+                root_message_id = root.msg_id
+                ps = PatchSeries(message_id=root_message_id,
+                                 subject=parts['subject'])
 
             ps.versions.append(psv)
 
@@ -494,9 +501,10 @@ class PatchesParser(object):
 
         parts = self.__parse_patch_subject(msg)
 
-        patch = Patch(subject=msg.subject, body=msg.body,
-                      series=parts['num'], total=parts['total'],
-                      date=msg.date, date_tz=msg.date_tz)
+        patch = Patch(message_id = msg.msg_id, subject=msg.subject,
+                      body=msg.body, series=parts['num'],
+                      total=parts['total'], date=msg.date,
+                      date_tz=msg.date_tz)
 
         member = self.members.get(msg.sender, None)
 
@@ -537,7 +545,8 @@ class PatchesParser(object):
             m = to_parse.pop(0)
             to_parse.extend(m.responses[:])
 
-            comment = Comment(subject=m.subject, body=m.body, date=m.date, date_tz=m.date_tz)
+            comment = Comment(message_id=m.msg_id, subject=m.subject,
+                              body=m.body, date=m.date, date_tz=m.date_tz)
             member = self.members.get(m.sender, None)
 
             if not member:
