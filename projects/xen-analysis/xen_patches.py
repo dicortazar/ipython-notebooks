@@ -390,7 +390,7 @@ class PatchesParser(object):
 
     THREAD_REGEX = '^\[PATCH.*].+$'
     #PATCH_REGEX = '^.*\[PATCH\s*(?:\s+for[\-\s]\d+\.\d+)?\s*(?:[vV](?P<version>\d+))?\s*(?:(?P<num>\d+)/(?P<total>\d+))?\]\s*(?P<subject>.+)$'
-    TYPE = '(OSSTEST|MINI-OS|raisin|iommu)*'
+    TYPE = '(OSSTEST|MINI-OS|raisin|iommu|OPW|ARM)*'
     PATCH_REGEX = '^.*\[\s*'+TYPE+'\s*PATCH\s*'+TYPE+'\s*(?:\s+for[\-\s]\d+\.\d+)?\s*(?:[vV](?P<version>\d+))?\s*(?:(?P<num>\d+)/(?P<total>\d+))?\]\s*(?P<subject>.+)$'
     FLAGS_REGEX = {
                    'Acked-by' : '^Acked-by:(?P<value>.+)$',
@@ -612,6 +612,9 @@ class PatchesParser(object):
         return commits
 
 def to_key(s):
+    import nltk
+    import string
+
     key = s.lower()
     key = key.replace('"', "'")
     key = key[:-1] if key.endswith('.') else key
@@ -619,10 +622,16 @@ def to_key(s):
     key = key.replace('/', "")
     key = key.replace(" ", "")
     key = key.replace('\n', "")
+    key = key.replace('\t', "")
     key = key.replace('.', "")
     key = key.replace("_", "")
     key = key.lstrip()
     key = key.rstrip()
+
+    #punctuations = list(string.punctuation)
+    #for punctuation in punctuations:
+    #    key = key.replace(punctuation, "")
+
     return key
 
 def parse_args():
@@ -666,11 +675,11 @@ def main():
 
     conn = MySQLdb.connect(user=args.db_user, passwd=args.db_password,
                            db=args.threads_db)
-    threads = retrieve_patch_threads(conn, "1900-01-01", "2100-01-01")
+    threads = retrieve_patch_threads(conn, "2010-01-01", "2100-01-01")
 
     conn = MySQLdb.connect(user=args.db_user, passwd=args.db_password,
                            db=args.commits_db)
-    commits = retrieve_commits(conn, "1900-01-01", "2100-01-01")
+    commits = retrieve_commits(conn, "2010-01-01", "2100-01-01")
 
     parser = PatchesParser()
     commits, patches_series = parser.parse(threads, commits)
