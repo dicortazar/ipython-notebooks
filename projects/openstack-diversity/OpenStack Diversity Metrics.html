@@ -181,7 +181,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
@@ -301,11 +301,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[146]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">Search</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="n">es_conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gerrit_eventized&#39;</span><span class="p">)</span>  <span class="c1"># Index selection</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="s1">&#39;now/M-2y&#39;</span><span class="p">,</span> <span class="s1">&#39;lt&#39;</span><span class="p">:</span><span class="s1">&#39;now/M&#39;</span><span class="p">})</span> <span class="c1"># filter date</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="s1">&#39;now/M-4y&#39;</span><span class="p">,</span> <span class="s1">&#39;lt&#39;</span><span class="p">:</span><span class="s1">&#39;now/M&#39;</span><span class="p">})</span> <span class="c1"># filter date</span>
 <span class="n">s</span><span class="o">.</span><span class="n">aggs</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span>\
       <span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;date_histogram&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="s1">&#39;quarter&#39;</span><span class="p">)</span>\
       <span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s1">&#39;changesets&#39;</span><span class="p">,</span> <span class="s1">&#39;cardinality&#39;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">precision_threshold</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
@@ -319,7 +319,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[149]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s1">&#39;gender&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">]</span>
@@ -332,7 +332,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[152]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -350,7 +350,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">plotly</span>
@@ -379,7 +379,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[155]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">female_changesets</span> <span class="o">=</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
@@ -415,7 +415,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="8497e212-f86f-4180-a154-4ee3f8710053" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("8497e212-f86f-4180-a154-4ee3f8710053", [{"x": ["2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [2401, 6267, 8774, 10919, 9633, 10796, 7718, 4453]}, {"x": ["2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [9115, 20581, 29307, 41113, 38980, 46420, 35618, 19661]}, {"x": ["2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [354, 1909, 7807, 10511, 14199, 19067, 16222, 9008]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="b8b6d45a-f228-4a17-9de1-62c721ede6b7" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("b8b6d45a-f228-4a17-9de1-62c721ede6b7", [{"name": "female", "type": "scatter", "y": [1459, 3507, 4164, 5238, 5213, 6726, 6301, 8262, 8863, 11040, 10973, 10977, 9745, 10958, 8046, 7220], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [7059, 15650, 16099, 21055, 21261, 24350, 22720, 28419, 30884, 36019, 36691, 41295, 39283, 47073, 37139, 31440], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [2848, 5716, 6085, 7991, 7598, 9120, 8452, 10971, 11889, 15718, 17708, 17279, 16297, 19322, 16922, 14444], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -440,7 +440,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">Search</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="n">es_conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gerrit_eventized&#39;</span><span class="p">)</span>  <span class="c1"># Index selection</span>
@@ -458,7 +458,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s1">&#39;gender&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">]</span>
@@ -477,7 +477,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">female_submitters</span> <span class="o">=</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
@@ -513,7 +513,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="6e89760d-19da-4adf-989a-7052e82c8bcc" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("6e89760d-19da-4adf-989a-7052e82c8bcc", [{"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [5, 172, 62, 0, 0, 0, 0, 1, 2, 13, 20, 51, 137, 165, 173, 332]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [18, 316, 393, 2, 8, 24, 10, 15, 44, 94, 153, 302, 821, 1038, 990, 1044]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [8, 86, 109, 0, 2, 2, 3, 2, 11, 37, 60, 107, 240, 295, 340, 369]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="654029ff-0e63-4f3c-8d1d-efdacbbcf7b7" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("654029ff-0e63-4f3c-8d1d-efdacbbcf7b7", [{"name": "female", "type": "scatter", "y": [229, 262, 281, 318, 350, 395, 397, 452, 464, 513, 524, 566, 583, 562, 499, 466], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [638, 962, 1017, 1295, 1458, 1687, 1728, 1933, 2042, 2250, 2299, 2395, 2445, 2435, 2208, 1970], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [194, 305, 336, 402, 367, 454, 451, 484, 529, 617, 699, 723, 733, 802, 807, 759], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -547,7 +547,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[182]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">Search</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="n">es_conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gerrit_eventized&#39;</span><span class="p">)</span>  <span class="c1"># Index selection</span>
@@ -566,7 +566,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[183]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s1">&#39;gender&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">]</span>
@@ -594,7 +594,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1"># Number of votes by gender</span>
@@ -631,7 +631,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="4b992013-3e89-4280-834c-79608b8a4f9c" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("4b992013-3e89-4280-834c-79608b8a4f9c", [{"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [35, 1506, 1137, 1568, 838, 735, 19, 72, 61, 328, 372, 1650, 4613, 3496, 7564, 7641]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [814, 20164, 11022, 16397, 7919, 6304, 332, 394, 687, 2066, 3573, 15251, 45374, 30056, 72017, 69728]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [218, 2439, 1654, 2539, 1230, 885, 44, 79, 246, 432, 1186, 3150, 7979, 5051, 14030, 12674]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="7bcce0bc-4b6e-4ffd-a4cc-fd397da66ed5" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("7bcce0bc-4b6e-4ffd-a4cc-fd397da66ed5", [{"name": "female", "type": "scatter", "y": [3235, 7874, 9804, 13903, 15859, 21360, 18406, 23452, 23100, 29571, 25809, 24850, 21490, 24010, 16316, 14610], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [39709, 97675, 101572, 150619, 149552, 179623, 152493, 207652, 199028, 237979, 221027, 247048, 208814, 230622, 158684, 134374], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [6670, 11634, 15927, 22024, 21083, 24958, 21189, 30177, 30412, 42643, 47381, 41957, 35977, 35729, 30038, 24325], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -651,7 +651,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1"># Number of votes by gender</span>
@@ -688,7 +688,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="1fb60ad0-e591-4763-a4a8-5444d2ff31cd" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("1fb60ad0-e591-4763-a4a8-5444d2ff31cd", [{"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [10, 53, 51, 72, 64, 57, 11, 11, 19, 47, 63, 148, 183, 170, 198, 184]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [104, 445, 418, 573, 479, 450, 58, 83, 143, 289, 472, 858, 1189, 1116, 1253, 1105]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [26, 93, 105, 116, 96, 69, 18, 23, 42, 76, 107, 204, 310, 316, 393, 346]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="1a7dcaf0-ab01-4048-a1cc-860026e6bd43" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("1a7dcaf0-ab01-4048-a1cc-860026e6bd43", [{"name": "female", "type": "scatter", "y": [52, 85, 94, 117, 139, 162, 160, 200, 226, 252, 257, 283, 270, 287, 231, 215], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [417, 626, 738, 948, 1043, 1194, 1223, 1365, 1414, 1549, 1581, 1684, 1639, 1654, 1503, 1295], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [97, 142, 163, 206, 212, 204, 241, 258, 285, 379, 364, 407, 443, 463, 467, 402], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -708,7 +708,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[194]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">Search</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="n">es_conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gerrit_eventized&#39;</span><span class="p">)</span>  <span class="c1"># Index selection</span>
@@ -728,7 +728,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s1">&#39;gender&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">]</span>
@@ -747,7 +747,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1"># Number of core reviewers by gender</span>
@@ -784,7 +784,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="91cb4082-7aec-4e9a-a014-6a1567c5b143" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("91cb4082-7aec-4e9a-a014-6a1567c5b143", [{"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [345, 1676, 1534, 2442, 3208, 5398, 5474, 8663, 9584, 13049, 12647, 11627, 10379, 11086, 8633, 5024]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [5669, 25250, 21020, 38396, 39562, 65118, 60292, 92797, 94813, 111135, 102306, 125508, 108011, 132766, 95412, 55800]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [1019, 1972, 1749, 3643, 3210, 6158, 4871, 9449, 8517, 13719, 16396, 16713, 15223, 15310, 12918, 8031]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="bf6c32a5-fd09-43cf-bc16-d85a420667f9" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("bf6c32a5-fd09-43cf-bc16-d85a420667f9", [{"name": "female", "type": "scatter", "y": [1413, 3859, 3840, 5084, 5529, 6764, 6081, 8715, 9584, 13049, 12649, 11637, 10404, 11142, 8732, 8254], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [21579, 55119, 51540, 77171, 67463, 81871, 66543, 93075, 94813, 111212, 102381, 125792, 108374, 133601, 96758, 89853], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [3502, 4548, 4457, 7399, 5416, 7764, 5265, 9491, 8517, 13719, 16407, 16736, 15233, 15355, 13068, 12707], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -804,7 +804,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1"># Number of core reviewers by gender</span>
@@ -841,11 +841,24 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="9a2a0bba-47ca-4509-af93-f8cecc8ef058" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("9a2a0bba-47ca-4509-af93-f8cecc8ef058", [{"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [9, 15, 20, 27, 32, 40, 41, 62, 65, 86, 100, 105, 107, 104, 95, 82]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [118, 177, 205, 270, 289, 335, 357, 422, 493, 544, 585, 604, 656, 692, 679, 600]}, {"x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [31, 35, 38, 44, 49, 46, 48, 56, 65, 96, 118, 124, 131, 140, 128, 127]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="456eba28-698f-45e7-9a26-c33e34566db7" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("456eba28-698f-45e7-9a26-c33e34566db7", [{"name": "female", "type": "scatter", "y": [13, 18, 20, 28, 33, 40, 43, 62, 65, 86, 100, 105, 107, 104, 95, 87], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "male", "type": "scatter", "y": [129, 190, 219, 282, 297, 345, 361, 422, 493, 544, 585, 604, 656, 692, 682, 622], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}, {"name": "unknown", "type": "scatter", "y": [33, 37, 38, 45, 49, 46, 48, 56, 65, 96, 118, 124, 131, 140, 130, 141], "x": ["2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
 </div>
 </div>
 
