@@ -335,11 +335,13 @@ div#notebook {
     <span class="n">buckets</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s2">&quot;gender&quot;</span><span class="p">][</span><span class="s2">&quot;buckets&quot;</span><span class="p">]</span>
     <span class="n">pie_chart_labels</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
         <span class="n">pie_chart_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">])</span>
         <span class="n">pie_chart_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">metric_name</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">])</span>
+        <span class="n">pie_chart_count</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="s2">&quot;doc_count&quot;</span><span class="p">])</span>
         
-    <span class="k">return</span> <span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span>
+    <span class="k">return</span> <span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span>
 </pre></div>
 
 </div>
@@ -471,7 +473,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="f75f3539-3073-45e2-9590-2bfa02c40f01" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("f75f3539-3073-45e2-9590-2bfa02c40f01", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [414, 809, 1640, 1702, 1943, 1586, 1893, 1603, 2158, 2652, 3171, 2903, 3207, 2998, 3571, 2422, 2833]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [4199, 6243, 12124, 11646, 14878, 15121, 16318, 14421, 18582, 20717, 23271, 23414, 27086, 25623, 31439, 24024, 23474]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [876, 1189, 2681, 2020, 2650, 2685, 3086, 3252, 3912, 4285, 5659, 6648, 6707, 7058, 8971, 8499, 8779]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="d5f5e750-dd43-48ab-adda-776b645bf392" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("d5f5e750-dd43-48ab-adda-776b645bf392", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [414, 809, 1640, 1702, 1943, 1586, 1893, 1603, 2158, 2652, 3171, 2903, 3207, 2998, 3571, 2422, 2833]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [4199, 6243, 12124, 11646, 14878, 15121, 16318, 14421, 18582, 20717, 23271, 23414, 27086, 25623, 31439, 24024, 23474]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [876, 1189, 2681, 2020, 2650, 2685, 3086, 3252, 3912, 4285, 5659, 6648, 6707, 7058, 8971, 8499, 8779]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -495,7 +497,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
                                                                                              <span class="n">filter_changeset_submission</span><span class="p">])</span>
 </pre></div>
 
@@ -523,7 +525,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="370f4808-e2da-48b6-9e34-f5f7efea8fd5" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("370f4808-e2da-48b6-9e34-f5f7efea8fd5", [{"type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"], "values": [312309, 78969, 37512, 1]}], {"title": "Changeset Submissions by Gender (last 4 years)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="444d06d8-d439-4983-be9d-572d567c1668" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("444d06d8-d439-4983-be9d-572d567c1668", [{"values": [312309, 78969, 37512, 1], "type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"]}], {"title": "Changeset Submissions by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -537,7 +539,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
                                                                                              <span class="n">filter_changeset_submission</span><span class="p">])</span>
 </pre></div>
 
@@ -565,7 +567,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="9ea4e848-850d-4361-af59-234b125567ee" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("9ea4e848-850d-4361-af59-234b125567ee", [{"type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"], "values": [103981, 33244, 11778, 1]}], {"title": "Changeset Submissions by Gender (last year)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="2295c775-70bb-4ee6-b675-259d278e7593" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("2295c775-70bb-4ee6-b675-259d278e7593", [{"values": [103981, 33244, 11778, 1], "type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"]}], {"title": "Changeset Submissions by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -609,7 +611,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="0a093044-330a-445f-8db3-96853cfac9ac" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("0a093044-330a-445f-8db3-96853cfac9ac", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [42, 82, 103, 117, 154, 171, 201, 174, 244, 229, 284, 284, 334, 307, 288, 249, 231]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [333, 522, 788, 808, 1026, 1121, 1254, 1211, 1406, 1481, 1643, 1584, 1744, 1741, 1791, 1504, 1400]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [99, 117, 165, 161, 180, 210, 214, 208, 254, 258, 346, 347, 425, 426, 455, 443, 460]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="ed999e77-f83f-4e97-8ac4-0b62f076f90a" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("ed999e77-f83f-4e97-8ac4-0b62f076f90a", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [42, 82, 103, 117, 154, 171, 201, 174, 244, 229, 284, 284, 334, 307, 288, 249, 231]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [333, 522, 788, 808, 1026, 1121, 1254, 1211, 1406, 1481, 1643, 1584, 1744, 1741, 1791, 1504, 1400]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [99, 117, 165, 161, 180, 210, 214, 208, 254, 258, 346, 347, 425, 426, 455, 443, 460]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -632,7 +634,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
                                                                                              <span class="n">filter_changeset_submission</span><span class="p">])</span>
 <span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;Changeset Submitters by Gender (last 4 years)&#39;</span><span class="p">)</span>
 </pre></div>
@@ -648,7 +650,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="3f89debb-308c-4bec-bc10-bc16edf7f83e" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("3f89debb-308c-4bec-bc10-bc16edf7f83e", [{"type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"], "values": [5673, 1636, 1030, 1]}], {"title": "Changeset Submitters by Gender (last 4 years)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="2f84eb8e-abf3-43ba-95ef-abe04cd7c536" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("2f84eb8e-abf3-43ba-95ef-abe04cd7c536", [{"values": [5673, 1636, 1030, 1], "type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"]}], {"title": "Changeset Submitters by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -662,7 +664,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
                                                                                               <span class="n">filter_changeset_submission</span><span class="p">])</span>
 <span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;Changeset Submitters by Gender (last year)&#39;</span><span class="p">)</span>
 </pre></div>
@@ -678,7 +680,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="c6de946d-5790-43dc-b47f-3a511bf30a69" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("c6de946d-5790-43dc-b47f-3a511bf30a69", [{"type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"], "values": [2947, 933, 522, 1]}], {"title": "Changeset Submitters by Gender (last year)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="b5d66844-e7ba-4013-bc40-be398d411c47" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("b5d66844-e7ba-4013-bc40-be398d411c47", [{"values": [2947, 933, 522, 1], "type": "pie", "labels": ["male", "NotKnown", "female", "Unknown"]}], {"title": "Changeset Submitters by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -744,7 +746,67 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="93cc5e81-017b-4581-b7bd-5914f9cbad3f" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("93cc5e81-017b-4581-b7bd-5914f9cbad3f", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [942, 1499, 3106, 3993, 6029, 6798, 9838, 8809, 11290, 10822, 14498, 13692, 13244, 11330, 12959, 9873, 11585]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [16995, 21679, 41379, 45817, 69704, 71188, 83858, 71488, 96139, 92477, 114730, 109154, 124263, 107075, 118588, 87964, 97829]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [3951, 4211, 6264, 9184, 11650, 10535, 12141, 9932, 14620, 15387, 22022, 23965, 21473, 18841, 21274, 18510, 20493]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="bd4b52d6-4f90-401e-a05b-681f0f08bccf" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("bd4b52d6-4f90-401e-a05b-681f0f08bccf", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [942, 1499, 3106, 3993, 6029, 6798, 9838, 8809, 11290, 10822, 14498, 13692, 13244, 11330, 12959, 9873, 11585]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [16995, 21679, 41379, 45817, 69704, 71188, 83858, 71488, 96139, 92477, 114730, 109154, 124263, 107075, 118588, 87964, 97829]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [3951, 4211, 6264, 9184, 11650, 10535, 12141, 9932, 14620, 15387, 22022, 23965, 21473, 18841, 21274, 18510, 20493]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_count</span><span class="p">,</span> <span class="s1">&#39;Changeset votes by Gender (last 4 years)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="0223f1dc-4dce-4b84-bc78-cc173999125a" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("0223f1dc-4dce-4b84-bc78-cc173999125a", [{"values": [1370327, 244453, 150307], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Changeset votes by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_count</span><span class="p">,</span> <span class="s1">&#39;Changeset votes by Gender (last year)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="9c5cf1d1-f80a-440b-851e-ead4d57c939a" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("9c5cf1d1-f80a-440b-851e-ead4d57c939a", [{"values": [409793, 78969, 45582], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Changeset votes by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -759,88 +821,6 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Number-of-people-voting">Number of people voting<a class="anchor-link" href="#Number-of-people-voting">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">draw_evolutionary_chart</span><span class="p">(</span><span class="s2">&quot;key_as_string&quot;</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="3216a054-08ae-4f5e-8994-3fa42313951b" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("3216a054-08ae-4f5e-8994-3fa42313951b", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [31, 55, 85, 94, 117, 139, 160, 158, 198, 222, 246, 250, 277, 262, 284, 228, 221]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [295, 446, 625, 736, 945, 1038, 1189, 1216, 1353, 1404, 1534, 1572, 1667, 1626, 1643, 1509, 1355]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [68, 89, 119, 131, 172, 176, 172, 197, 221, 240, 326, 313, 355, 391, 419, 421, 389]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Number-of-core-reviews-(-2-OR-+2)-by-gender">Number of core reviews (-2 OR +2) by gender<a class="anchor-link" href="#Number-of-core-reviews-(-2-OR-+2)-by-gender">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;core_reviewers&quot;</span>
-<span class="n">METRIC_FIELD</span> <span class="o">=</span> <span class="s2">&quot;uuid&quot;</span>
-
-<span class="n">filter_core_vote</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;-2&quot;</span><span class="p">])</span>
-<span class="n">filter_vote</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">eventtype</span><span class="o">=</span><span class="s1">&#39;CHANGESET_PATCHSET_APPROVAL_Code-Review&#39;</span><span class="p">)</span> <span class="c1"># filter by event: vote a code review</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">query_metric_over_time</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_core_vote</span><span class="p">,</span> <span class="n">filter_date_4y</span><span class="p">,</span> <span class="n">filter_vote</span><span class="p">])</span>
-<span class="n">draw_evolutionary_chart</span><span class="p">(</span><span class="s2">&quot;key_as_string&quot;</span><span class="p">,</span> <span class="s2">&quot;doc_count&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="c0767bb1-f584-4636-a272-558946756c72" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("c0767bb1-f584-4636-a272-558946756c72", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [450, 649, 1238, 1310, 1881, 1958, 2707, 2397, 3640, 4258, 5621, 5860, 5406, 5053, 5486, 4678, 5606]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [9990, 11416, 21682, 21709, 32824, 29865, 35296, 29119, 39406, 40612, 48532, 45188, 55850, 49389, 62901, 47408, 56887]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [1990, 2173, 2385, 2697, 3821, 2959, 4121, 2865, 4615, 4538, 6472, 7283, 7858, 6616, 6938, 6070, 8455]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Number-of-people-acting-as-core-reviews-(-2-OR-+2)-by-gender">Number of people acting as core reviews (-2 OR +2) by gender<a class="anchor-link" href="#Number-of-people-acting-as-core-reviews-(-2-OR-+2)-by-gender">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -864,7 +844,269 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="b292faf1-a45a-4f75-8046-b9ab5b616f95" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("b292faf1-a45a-4f75-8046-b9ab5b616f95", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [9, 14, 18, 20, 28, 33, 40, 41, 60, 63, 83, 97, 102, 104, 101, 92, 89]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [102, 132, 190, 219, 281, 296, 344, 360, 419, 492, 543, 582, 601, 651, 686, 676, 623]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [22, 25, 28, 28, 34, 38, 39, 41, 47, 56, 79, 95, 102, 109, 118, 109, 119]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="4f0968ba-75f9-4c50-b602-c9fe9f9c9922" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("4f0968ba-75f9-4c50-b602-c9fe9f9c9922", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [31, 55, 85, 94, 117, 139, 160, 158, 198, 222, 246, 250, 277, 262, 284, 228, 221]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [295, 446, 625, 736, 945, 1038, 1189, 1216, 1353, 1404, 1534, 1572, 1667, 1626, 1643, 1509, 1355]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [68, 89, 119, 131, 172, 176, 172, 197, 221, 240, 326, 313, 355, 391, 419, 421, 389]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;People voting by Gender (last 4 years)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="fea7103f-778d-446b-bcce-20a5930861a4" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("fea7103f-778d-446b-bcce-20a5930861a4", [{"values": [4401, 1256, 735], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "People voting by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;People voting by Gender (last year)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="9921efac-caa9-4b72-ba71-ba3320210235" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("9921efac-caa9-4b72-ba71-ba3320210235", [{"values": [2491, 774, 424], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "People voting by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Number-of-core-reviews-(-2-OR-+2)-by-gender">Number of core reviews (-2 OR +2) by gender<a class="anchor-link" href="#Number-of-core-reviews-(-2-OR-+2)-by-gender">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;core_reviewers&quot;</span>
+<span class="n">METRIC_FIELD</span> <span class="o">=</span> <span class="s2">&quot;uuid&quot;</span>
+
+<span class="n">filter_core_vote</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;-2&quot;</span><span class="p">])</span>
+<span class="n">filter_vote</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">eventtype</span><span class="o">=</span><span class="s1">&#39;CHANGESET_PATCHSET_APPROVAL_Code-Review&#39;</span><span class="p">)</span> <span class="c1"># filter by event: vote a code review</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">query_metric_over_time</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_core_vote</span><span class="p">,</span> <span class="n">filter_date_4y</span><span class="p">,</span> <span class="n">filter_vote</span><span class="p">])</span>
+<span class="n">draw_evolutionary_chart</span><span class="p">(</span><span class="s2">&quot;key_as_string&quot;</span><span class="p">,</span> <span class="s2">&quot;doc_count&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="c0010f51-27d7-4e16-a88c-23a4b3d2f7a7" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("c0010f51-27d7-4e16-a88c-23a4b3d2f7a7", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [450, 649, 1238, 1310, 1881, 1958, 2707, 2397, 3640, 4258, 5621, 5860, 5406, 5053, 5486, 4678, 5606]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [9990, 11416, 21682, 21709, 32824, 29865, 35296, 29119, 39406, 40612, 48532, 45188, 55850, 49389, 62901, 47408, 56887]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [1990, 2173, 2385, 2697, 3821, 2959, 4121, 2865, 4615, 4538, 6472, 7283, 7858, 6616, 6938, 6070, 8455]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">,</span> <span class="n">filter_core_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_count</span><span class="p">,</span> <span class="s1">&#39;Core Reviews by Gender (last 4 years)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="fc9bb346-6bc1-4de5-bcb4-762df2818ed7" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("fc9bb346-6bc1-4de5-bcb4-762df2818ed7", [{"values": [638074, 81856, 58198], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Core Reviews by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">,</span> <span class="n">filter_core_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_count</span><span class="p">,</span> <span class="s1">&#39;Core Reviews by Gender (last year)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="d8549305-81eb-4794-9237-90fb76c3d9f0" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("d8549305-81eb-4794-9237-90fb76c3d9f0", [{"values": [215857, 28044, 20743], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Core Reviews by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Number-of-people-acting-as-core-reviews-(-2-OR-+2)-by-gender">Number of people acting as core reviews (-2 OR +2) by gender<a class="anchor-link" href="#Number-of-people-acting-as-core-reviews-(-2-OR-+2)-by-gender">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">draw_evolutionary_chart</span><span class="p">(</span><span class="s2">&quot;key_as_string&quot;</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="349a2b56-45e3-4522-855f-10e805351cc1" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("349a2b56-45e3-4522-855f-10e805351cc1", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [9, 14, 18, 20, 28, 33, 40, 41, 60, 63, 83, 97, 102, 104, 101, 92, 89]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [102, 132, 190, 219, 281, 296, 344, 360, 419, 492, 543, 582, 601, 651, 686, 676, 623]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [22, 25, 28, 28, 34, 38, 39, 41, 47, 56, 79, 95, 102, 109, 118, 109, 119]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_4y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">,</span> <span class="n">filter_core_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;Core Reviews by Gender (last 4 years)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="8725866c-1b44-4b83-b08c-195ae202d0c4" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("8725866c-1b44-4b83-b08c-195ae202d0c4", [{"values": [1313, 258, 212], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Core Reviews by Gender (last 4 years)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="n">pie_chart_count</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span>  <span class="p">[</span><span class="n">filter_date_1y</span><span class="p">,</span>
+                                                                                              <span class="n">filter_vote</span><span class="p">,</span> <span class="n">filter_core_vote</span><span class="p">])</span>
+<span class="n">draw_piechart</span><span class="p">(</span><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span><span class="p">,</span> <span class="s1">&#39;Core Reviews by Gender (last year)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="21dd3c1d-8dd9-4fc3-a4ac-2306acbabfc0" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("21dd3c1d-8dd9-4fc3-a4ac-2306acbabfc0", [{"values": [937, 189, 141], "type": "pie", "labels": ["male", "NotKnown", "female"]}], {"title": "Core Reviews by Gender (last year)"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -885,7 +1127,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">INDEX</span> <span class="o">=</span> <span class="s2">&quot;git_eventized&quot;</span>
@@ -901,7 +1143,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">git_filter</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">,</span>
@@ -931,7 +1173,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;commits&quot;</span>
@@ -948,7 +1190,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">draw_evolutionary_chart</span><span class="p">(</span><span class="s2">&quot;key_as_string&quot;</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">)</span>
@@ -965,7 +1207,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="2352ce1d-e7fc-4d36-aed0-7cf6c7c73601" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("2352ce1d-e7fc-4d36-aed0-7cf6c7c73601", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [761, 819, 1496, 966, 1175, 1347, 2019, 1418, 1923, 1978, 2194, 2301, 2378, 2128, 2583, 1684, 1532]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [12932, 13793, 16887, 15576, 19472, 17960, 19270, 17710, 21889, 22095, 23424, 20817, 24985, 21684, 24589, 16902, 13905]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [2016, 2491, 2675, 3006, 4061, 2992, 3409, 3316, 4181, 4182, 5949, 5979, 5698, 6130, 6811, 6515, 6265]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="2b96822c-47b1-4c0b-af7d-e4496f800f15" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("2b96822c-47b1-4c0b-af7d-e4496f800f15", [{"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "female", "y": [761, 819, 1496, 966, 1175, 1347, 2019, 1418, 1923, 1978, 2194, 2301, 2378, 2128, 2583, 1684, 1532]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "male", "y": [12932, 13793, 16887, 15576, 19472, 17960, 19270, 17710, 21889, 22095, 23424, 20817, 24985, 21684, 24589, 16902, 13905]}, {"x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "type": "scatter", "name": "unknown", "y": [2016, 2491, 2675, 3006, 4061, 2992, 3409, 3316, 4181, 4182, 5949, 5979, 5698, 6130, 6811, 6515, 6265]}], {}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
 </div>
 
 </div>
@@ -976,7 +1218,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1">#pie_chart_labels, pie_chart_values = query_total_piechart(INDEX, METRIC_NAME, METRIC_FIELD, </span>
@@ -998,11 +1240,19 @@ div#notebook {
 
 
 <div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">ValueError</span>                                Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-32-a162c7dea365&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      4</span> <span class="ansiblue"></span>
+<span class="ansigreen">      5</span> pie_chart_labels, pie_chart_values = query_total_piechart(INDEX, METRIC_NAME, METRIC_FIELD, 
+<span class="ansigreen">----&gt; 6</span><span class="ansired">                                                             [filter_date_4y, git_filter])
+</span><span class="ansigreen">      7</span> <span class="ansiblue"></span>
+<span class="ansigreen">      8</span> draw_piechart<span class="ansiblue">(</span>pie_chart_labels<span class="ansiblue">,</span> pie_chart_values<span class="ansiblue">,</span> <span class="ansiblue">&apos;Commits by Gender (last 4 years)&apos;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
 
-<div class="output_html rendered_html output_subarea ">
-<div id="6e56594c-0749-4ede-ab96-a454db24cb89" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("6e56594c-0749-4ede-ab96-a454db24cb89", [{"type": "pie", "labels": ["male", "NotKnown", "female"], "values": [324438, 75443, 28694]}], {"title": "Commits by Gender (last 4 years)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<span class="ansired">ValueError</span>: too many values to unpack (expected 2)</pre>
 </div>
-
 </div>
 
 </div>
@@ -1011,7 +1261,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c1">#pie_chart_labels, pie_chart_values = query_total_piechart(INDEX, METRIC_NAME, METRIC_FIELD, </span>
@@ -1025,21 +1275,6 @@ div#notebook {
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="60758c32-b4ab-4f13-87c6-724c4f359a9c" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("60758c32-b4ab-4f13-87c6-724c4f359a9c", [{"type": "pie", "labels": ["male", "NotKnown", "female"], "values": [76865, 25664, 7894]}], {"title": "Commits by Gender (last year)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1060,7 +1295,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;authors&quot;</span>
@@ -1078,25 +1313,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="5d02593b-1a39-4dfe-aca1-8285fc07b603" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("5d02593b-1a39-4dfe-aca1-8285fc07b603", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [53, 68, 96, 93, 125, 132, 170, 146, 189, 170, 223, 207, 263, 232, 221, 179, 158]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [593, 729, 851, 850, 1063, 1103, 1189, 1173, 1327, 1318, 1478, 1362, 1539, 1451, 1437, 1172, 978]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [146, 171, 209, 242, 255, 266, 281, 259, 334, 327, 418, 390, 458, 440, 491, 403, 389]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> 
@@ -1108,25 +1328,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="63f83650-be9d-43b6-ac11-652fda9be011" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("63f83650-be9d-43b6-ac11-652fda9be011", [{"type": "pie", "labels": ["male", "NotKnown", "female"], "values": [5807, 2386, 890]}], {"title": "Authors by Gender (last 4 years)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">pie_chart_labels</span><span class="p">,</span> <span class="n">pie_chart_values</span> <span class="o">=</span> <span class="n">query_total_piechart</span><span class="p">(</span><span class="n">INDEX</span><span class="p">,</span> <span class="n">METRIC_NAME</span><span class="p">,</span> <span class="n">METRIC_FIELD</span><span class="p">,</span> 
@@ -1135,21 +1340,6 @@ div#notebook {
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="d54ac78d-797e-4400-af02-80a34fb47781" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("d54ac78d-797e-4400-af02-80a34fb47781", [{"type": "pie", "labels": ["male", "NotKnown", "female"], "values": [2455, 988, 399]}], {"title": "Authors by Gender (last year)"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1170,7 +1360,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;code_files_touched&quot;</span>
@@ -1189,25 +1379,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="e5d9583b-fbd1-4318-a734-bd8415dc7312" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("e5d9583b-fbd1-4318-a734-bd8415dc7312", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [2579, 5710, 9516, 3317, 5485, 5063, 8819, 4416, 7677, 5600, 5247, 5492, 8346, 5940, 7283, 3830, 3119]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [78440, 64949, 84887, 58762, 80258, 72322, 86872, 66938, 95901, 73673, 90103, 68576, 87810, 62421, 69276, 38245, 30129]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [9002, 9018, 17284, 11527, 19926, 16118, 14704, 12364, 15534, 10580, 17375, 14793, 12288, 12991, 14141, 9682, 9593]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;others_files_touched&quot;</span>
@@ -1225,21 +1400,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-<div class="output_html rendered_html output_subarea ">
-<div id="89798b67-f4c9-4be6-9843-47aa95a148f3" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("89798b67-f4c9-4be6-9843-47aa95a148f3", [{"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "female", "y": [1935, 1982, 4574, 2723, 3579, 3737, 4681, 2813, 5604, 5284, 5232, 5903, 4073, 6555, 7351, 3673, 2926]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "male", "y": [39405, 577595, 59761, 28761, 41347, 51581, 47413, 39162, 55236, 45606, 60464, 48462, 62320, 55948, 61635, 37723, 32031]}, {"type": "scatter", "x": ["2013-01-01T00:00:00.000Z", "2013-04-01T00:00:00.000Z", "2013-07-01T00:00:00.000Z", "2013-10-01T00:00:00.000Z", "2014-01-01T00:00:00.000Z", "2014-04-01T00:00:00.000Z", "2014-07-01T00:00:00.000Z", "2014-10-01T00:00:00.000Z", "2015-01-01T00:00:00.000Z", "2015-04-01T00:00:00.000Z", "2015-07-01T00:00:00.000Z", "2015-10-01T00:00:00.000Z", "2016-01-01T00:00:00.000Z", "2016-04-01T00:00:00.000Z", "2016-07-01T00:00:00.000Z", "2016-10-01T00:00:00.000Z", "2017-01-01T00:00:00.000Z"], "name": "unknown", "y": [4110, 29523, 86477, 51537, 53612, 38488, 15488, 12436, 13250, 14674, 18100, 18155, 17508, 16882, 14852, 13492, 12323]}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1253,7 +1413,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">METRIC_NAME</span> <span class="o">=</span> <span class="s2">&quot;commits&quot;</span>
@@ -1280,7 +1440,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s2">&quot;aggregations&quot;</span><span class="p">][</span><span class="s1">&#39;project&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">]</span>
@@ -1314,7 +1474,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span>
@@ -1324,520 +1484,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;ratio_commits&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -1847,520 +1497,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;ratio_authors&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -2370,520 +1510,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;authors&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -2893,520 +1523,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;commits&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -3416,520 +1536,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">df_summary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -3939,520 +1549,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ratio_authors</th>
-      <th>ratio_commits</th>
-      <th>authors</th>
-      <th>commits</th>
-      <th>project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>19.417476</td>
-      <td>2.550817</td>
-      <td>20.0</td>
-      <td>64.0</td>
-      <td>Chef OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.714286</td>
-      <td>4.632153</td>
-      <td>6.0</td>
-      <td>17.0</td>
-      <td>Community App Catalog</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>20.393812</td>
-      <td>37.211550</td>
-      <td>145.0</td>
-      <td>3080.0</td>
-      <td>Documentation</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.142857</td>
-      <td>20.000000</td>
-      <td>1.0</td>
-      <td>18.0</td>
-      <td>I18n</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.214230</td>
-      <td>4.849442</td>
-      <td>145.0</td>
-      <td>2303.0</td>
-      <td>Infrastructure</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.181818</td>
-      <td>3.438072</td>
-      <td>9.0</td>
-      <td>639.0</td>
-      <td>OpenStack Charms</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.372093</td>
-      <td>3.270866</td>
-      <td>23.0</td>
-      <td>377.0</td>
-      <td>OpenStackAnsible</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.407960</td>
-      <td>19.201995</td>
-      <td>37.0</td>
-      <td>385.0</td>
-      <td>OpenStackClient</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.361457</td>
-      <td>8.536736</td>
-      <td>623.0</td>
-      <td>13175.0</td>
-      <td>Packaging-deb</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>6.896552</td>
-      <td>2.906209</td>
-      <td>2.0</td>
-      <td>22.0</td>
-      <td>Packaging-rpm</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>9.455587</td>
-      <td>11.149913</td>
-      <td>33.0</td>
-      <td>894.0</td>
-      <td>Puppet OpenStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.760218</td>
-      <td>7.747318</td>
-      <td>101.0</td>
-      <td>650.0</td>
-      <td>Quality Assurance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.421053</td>
-      <td>12.676056</td>
-      <td>7.0</td>
-      <td>54.0</td>
-      <td>RefStack</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.377246</td>
-      <td>1.724745</td>
-      <td>19.0</td>
-      <td>49.0</td>
-      <td>Release Management</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.033898</td>
-      <td>7.758621</td>
-      <td>26.0</td>
-      <td>117.0</td>
-      <td>Security</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.590909</td>
-      <td>5.624500</td>
-      <td>57.0</td>
-      <td>281.0</td>
-      <td>Telemetry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.424460</td>
-      <td>8.722359</td>
-      <td>27.0</td>
-      <td>142.0</td>
-      <td>barbican</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.898917</td>
-      <td>9.646419</td>
-      <td>77.0</td>
-      <td>532.0</td>
-      <td>cinder</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.256410</td>
-      <td>1.973684</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>cloudkitty</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.987013</td>
-      <td>24.044266</td>
-      <td>10.0</td>
-      <td>239.0</td>
-      <td>congress</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>7.751938</td>
-      <td>5.263158</td>
-      <td>10.0</td>
-      <td>59.0</td>
-      <td>designate</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>30.952381</td>
-      <td>25.799087</td>
-      <td>13.0</td>
-      <td>226.0</td>
-      <td>dragonflow</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.333333</td>
-      <td>1.798561</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>ec2-api</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>12.000000</td>
-      <td>1.726122</td>
-      <td>6.0</td>
-      <td>15.0</td>
-      <td>freezer</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.634146</td>
-      <td>17.884570</td>
-      <td>48.0</td>
-      <td>4518.0</td>
-      <td>fuel</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>18.811881</td>
-      <td>10.077519</td>
-      <td>57.0</td>
-      <td>234.0</td>
-      <td>glance</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.652174</td>
-      <td>3.174371</td>
-      <td>54.0</td>
-      <td>217.0</td>
-      <td>heat</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.748815</td>
-      <td>25.333689</td>
-      <td>96.0</td>
-      <td>949.0</td>
-      <td>horizon</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.478114</td>
-      <td>24.209874</td>
-      <td>43.0</td>
-      <td>1172.0</td>
-      <td>ironic</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.095238</td>
-      <td>7.272727</td>
-      <td>8.0</td>
-      <td>12.0</td>
-      <td>karbor</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.217391</td>
-      <td>10.482782</td>
-      <td>56.0</td>
-      <td>621.0</td>
-      <td>keystone</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.410256</td>
-      <td>3.985507</td>
-      <td>32.0</td>
-      <td>154.0</td>
-      <td>kolla</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.565217</td>
-      <td>33.035714</td>
-      <td>9.0</td>
-      <td>111.0</td>
-      <td>kuryr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.931034</td>
-      <td>22.292994</td>
-      <td>26.0</td>
-      <td>315.0</td>
-      <td>magnum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.216216</td>
-      <td>15.537190</td>
-      <td>24.0</td>
-      <td>282.0</td>
-      <td>manila</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.000000</td>
-      <td>8.151211</td>
-      <td>13.0</td>
-      <td>138.0</td>
-      <td>mistral</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>13.533835</td>
-      <td>4.693648</td>
-      <td>18.0</td>
-      <td>167.0</td>
-      <td>monasca</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>21.379310</td>
-      <td>27.073764</td>
-      <td>31.0</td>
-      <td>1002.0</td>
-      <td>murano</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.840000</td>
-      <td>7.279824</td>
-      <td>99.0</td>
-      <td>858.0</td>
-      <td>neutron</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>8.108108</td>
-      <td>1.066983</td>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>notavailable</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.285330</td>
-      <td>6.913944</td>
-      <td>121.0</td>
-      <td>891.0</td>
-      <td>nova</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.956522</td>
-      <td>8.208366</td>
-      <td>44.0</td>
-      <td>312.0</td>
-      <td>octavia</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.706349</td>
-      <td>4.804250</td>
-      <td>59.0</td>
-      <td>416.0</td>
-      <td>oslo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.196078</td>
-      <td>9.099617</td>
-      <td>31.0</td>
-      <td>190.0</td>
-      <td>rally</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.581921</td>
-      <td>5.025357</td>
-      <td>41.0</td>
-      <td>109.0</td>
-      <td>requirements</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.819209</td>
-      <td>8.212351</td>
-      <td>28.0</td>
-      <td>379.0</td>
-      <td>sahara</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.285714</td>
-      <td>8.932462</td>
-      <td>7.0</td>
-      <td>41.0</td>
-      <td>searchlight</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>32.653061</td>
-      <td>5.765341</td>
-      <td>16.0</td>
-      <td>171.0</td>
-      <td>senlin</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>10.169492</td>
-      <td>5.415162</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>solum</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>16.666667</td>
-      <td>16.607774</td>
-      <td>3.0</td>
-      <td>47.0</td>
-      <td>storlets</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>14.583333</td>
-      <td>7.706490</td>
-      <td>35.0</td>
-      <td>209.0</td>
-      <td>swift</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>22.758621</td>
-      <td>22.988506</td>
-      <td>33.0</td>
-      <td>180.0</td>
-      <td>tacker</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>72.727273</td>
-      <td>128.125000</td>
-      <td>8.0</td>
-      <td>41.0</td>
-      <td>tricircle</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>11.204482</td>
-      <td>4.850746</td>
-      <td>40.0</td>
-      <td>663.0</td>
-      <td>tripleo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>19.277108</td>
-      <td>11.536388</td>
-      <td>32.0</td>
-      <td>214.0</td>
-      <td>trove</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>45.833333</td>
-      <td>28.842832</td>
-      <td>11.0</td>
-      <td>167.0</td>
-      <td>vitrage</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>23.636364</td>
-      <td>9.368635</td>
-      <td>13.0</td>
-      <td>46.0</td>
-      <td>watcher</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>15.151515</td>
-      <td>7.951807</td>
-      <td>5.0</td>
-      <td>33.0</td>
-      <td>winstackers</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>17.757009</td>
-      <td>18.852459</td>
-      <td>19.0</td>
-      <td>184.0</td>
-      <td>zaqar</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>38.461538</td>
-      <td>47.783251</td>
-      <td>10.0</td>
-      <td>97.0</td>
-      <td>zun</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre> 
@@ -4465,7 +1565,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre> 
